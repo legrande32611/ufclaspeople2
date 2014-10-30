@@ -1,0 +1,12 @@
+body[class*="full-width"] {
+	@media (min-width: $size__screen-sm-min){
+		#site-navigation {
+			display: none;	
+		}
+		#primary {
+			float: none;
+			padding-left: $size__grid-gutter-width;	
+			padding-right: $size__grid-gutter-width;	
+		}
+	}
+}

@@ -25,8 +25,9 @@
 function ufclaspeople2_custom_header_setup() {
 	add_theme_support( 'custom-header', apply_filters( 'ufclaspeople2_custom_header_args', array(
 		'default-image'          => '',
-		'default-text-color'     => '000000',
-		'width'                  => 1000,
+		'default-text-color'     => 'ffffff',
+		'width'                  => 960,
+		'header-text'			 => false,
 		'height'                 => 250,
 		'flex-height'            => true,
 		'wp-head-callback'       => 'ufclaspeople2_header_style',
@@ -86,19 +87,14 @@ if ( ! function_exists( 'ufclaspeople2_admin_header_style' ) ) :
 function ufclaspeople2_admin_header_style() {
 ?>
 	<style type="text/css">
-		.appearance_page_custom-header #headimg {
+		.appearance_page_custom-header #site-image {
 			border: none;
 		}
-		#headimg h1,
-		#desc {
-		}
-		#headimg h1 {
-		}
-		#headimg h1 a {
-		}
-		#desc {
-		}
-		#headimg img {
+		#site-image img {
+			width: 100%;
+			height: auto;
+			max-width: 960px;
+			min-height:250px;
 		}
 	</style>
 <?php
@@ -112,15 +108,77 @@ if ( ! function_exists( 'ufclaspeople2_admin_header_image' ) ) :
  * @see ufclaspeople2_custom_header_setup().
  */
 function ufclaspeople2_admin_header_image() {
-	$style = sprintf( ' style="color:#%s;"', get_header_textcolor() );
-?>
-	<div id="headimg">
-		<h1 class="displaying-header-text"><a id="name"<?php echo $style; ?> onclick="return false;" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php bloginfo( 'name' ); ?></a></h1>
-		<div class="displaying-header-text" id="desc"<?php echo $style; ?>><?php bloginfo( 'description' ); ?></div>
-		<?php if ( get_header_image() ) : ?>
-		<img src="<?php header_image(); ?>" alt="">
-		<?php endif; ?>
-	</div>
-<?php
+	// Show the appropriate preview image or slideshow
+	$header_slideshow = get_theme_mod('header_slideshow');
+	if ( get_header_image() && empty($header_slideshow) ) : ?>
+		<div id="site-image">
+        	<img src="<?php header_image(); ?>" alt="" />
+        </div>
+        <?php elseif( $header_slideshow ) : ?>
+        <div id="site-image">
+            <?php do_action('slideshow_deploy', $header_slideshow ); ?>
+        </div>
+	<?php endif;
 }
 endif; // ufclaspeople2_admin_header_image
+
+
+/**
+ * Custom header slideshow field displayed on the Appearance > Header admin panel.
+ *
+ */
+function ufclaspeople2_custom_header_options() { ?>
+    <h3><?php _e( 'Header Slideshow' ); ?></h3>
+
+    <table class="form-table">
+    <tbody>
+    <tr>
+    <th scope="row"><label for="header-slideshow"><?php _e( 'Slideshow' ); ?></label></th>
+    <td>
+        <p>Replace the header image with a slideshow. Go to <strong>Slideshows</strong> in the dashboard menu to edit.</p>
+        <select name="header-slideshow" id="header-slideshow">
+		<?php     
+		// Show a select list of published slideshows on the site
+		$slideshows = new WP_Query("post_type=slideshow&post_status=publish&orderby=title&order=ASC");
+		$selected = get_theme_mod( 'header_slideshow' );
+		
+		// Add a default for nothing selected
+		echo '<option value="0">' . __('Select a Slideshow') . '</option>';
+		
+		// Loop through all the slideshows
+		if ( $slideshows->have_posts() ) {
+			while ( $slideshows->have_posts() ) {
+				$slideshows->the_post(); 
+				$s_title = get_the_title();
+				$s_id = get_the_ID();
+				echo '<option value="' . $s_id . '" ' . selected( $selected, $s_id, false ) . '>' . $s_title . '</option>';
+			}
+		}
+        ?>
+    	</select>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+
+<?php	
+}
+add_action( 'custom_header_options', 'ufclaspeople2_custom_header_options' );
+
+function ufclaspeople2_save_custom_header_options() {
+	if ( ! current_user_can('edit_theme_options') )
+		return;
+
+	if( isset($_POST['header-slideshow']) ){
+		check_admin_referer( 'custom-header-options', '_wpnonce-custom-header-options' );
+		
+		// Update the theme setting only if it's a valid integer
+		$s_id = $_POST['header-slideshow'];
+		
+		if( filter_var($s_id, FILTER_VALIDATE_INT) !== false ){
+			set_theme_mod( 'header_slideshow', $s_id );
+		}
+	}
+	
+}
+add_action( 'admin_head-appearance_page_custom-header', 'ufclaspeople2_save_custom_header_options' );

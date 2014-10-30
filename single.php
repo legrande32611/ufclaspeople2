@@ -7,7 +7,9 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
+<?php $content_width = ( is_active_sidebar( 'post_sidebar' ) )? "col-sm-6 col-md-6":"col-sm-8 col-md-9"; ?>
+
+	<div id="primary" class="content-area <?php echo $content_width; ?>">
 		<main id="main" class="site-main" role="main">
 
 		<?php while ( have_posts() ) : the_post(); ?>
@@ -27,6 +29,5 @@ get_header(); ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
-
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

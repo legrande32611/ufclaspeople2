@@ -79,16 +79,32 @@ function ufclaspeople2_posted_on() {
 	);
 
 	$posted_on = sprintf(
-		_x( 'Posted on %s', 'post date', 'ufclaspeople2' ),
-		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
-	);
+		_x( 'Posted on %s', 'post date', 'ufclaspeople2' ), $time_string );
 
 	$byline = sprintf(
 		_x( 'by %s', 'post author', 'ufclaspeople2' ),
 		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 	);
+	
+	// Hide category and tag text for pages.
+	/*if ( 'post' == get_post_type() ) {*/
+		/* translators: used between list items, there is a space after the comma */
+		$categories = '';
+		$tags = '';
+		
+		$categories_list = get_the_category_list( __( ', ', 'ufclaspeople2' ) );
+		if ( $categories_list && ufclaspeople2_categorized_blog() ) {
+			$categories = sprintf( '<span class="cat-links">' . __( ' in %1$s', 'ufclaspeople2' ) . '</span>', $categories_list );
+		}
 
-	echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>';
+		/* translators: used between list items, there is a space after the comma */
+		$tags_list = get_the_tag_list( '', __( ', ', 'ufclaspeople2' ) );
+		if ( $tags_list ) {
+			$tags = sprintf( '<span class="tags-links">' . __( 'Tagged %1$s', 'ufclaspeople2' ) . '</span>', $tags_list );
+		}
+	/*}*/
+	
+	echo '<span class="posted-on">' . $posted_on . '</span> ' . $categories . ' ' . $tags;
 
 }
 endif;
@@ -98,27 +114,6 @@ if ( ! function_exists( 'ufclaspeople2_entry_footer' ) ) :
  * Prints HTML with meta information for the categories, tags and comments.
  */
 function ufclaspeople2_entry_footer() {
-	// Hide category and tag text for pages.
-	if ( 'post' == get_post_type() ) {
-		/* translators: used between list items, there is a space after the comma */
-		$categories_list = get_the_category_list( __( ', ', 'ufclaspeople2' ) );
-		if ( $categories_list && ufclaspeople2_categorized_blog() ) {
-			printf( '<span class="cat-links">' . __( 'Posted in %1$s', 'ufclaspeople2' ) . '</span>', $categories_list );
-		}
-
-		/* translators: used between list items, there is a space after the comma */
-		$tags_list = get_the_tag_list( '', __( ', ', 'ufclaspeople2' ) );
-		if ( $tags_list ) {
-			printf( '<span class="tags-links">' . __( 'Tagged %1$s', 'ufclaspeople2' ) . '</span>', $tags_list );
-		}
-	}
-
-	if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-		echo '<span class="comments-link">';
-		comments_popup_link( __( 'Leave a comment', 'ufclaspeople2' ), __( '1 Comment', 'ufclaspeople2' ), __( '% Comments', 'ufclaspeople2' ) );
-		echo '</span>';
-	}
-
 	edit_post_link( __( 'Edit', 'ufclaspeople2' ), '<span class="edit-link">', '</span>' );
 }
 endif;

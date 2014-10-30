@@ -1,0 +1,90 @@
+#institutional-nav {
+	background: transparent url("images/bg-institutional-nav.jpg") repeat-x;
+	border-bottom: 1px solid $light-blue;
+	height: 27px;
+	font-size: .9em;
+	padding-left: 0;
+	position: relative;
+	z-index: 99999 !important;
+	display: none;
+	@media (min-width: $size__screen-sm-min) {
+		display: block;
+		margin-bottom: 24px;	
+	}
+	li {
+		float: left;
+		height: 23px;
+		display: block;
+	}
+	li:hover {
+	  	background-color: $very-dark-blue;
+	}
+	a {	
+		line-height: 1.9em;
+		text-align: center;
+		display: block;
+		height: 23px;
+		position: relative;
+		padding: 0; /* 22px;*/
+		text-decoration: none;
+		font-family: Georgia,'Palatino Linotype', Palatino, 'Book Antiqua', serif;
+		color: #fff;
+		
+		span {
+			background: url("images/bg-downarrow.png") no-repeat right center transparent;
+			padding-right:10px;
+		}
+		&:hover {
+			background-color: $very-dark-blue; 
+			text-decoration: none;
+		}
+	}
+	#inst-clas {
+		font-size: 12px;
+	}
+	#top {
+		top: 2px;
+		position: relative;
+		@media (max-width: $size__screen-sm-max) {
+			max-width: 960px;
+			width: auto;
+		}
+	}
+	#utility-tabs {
+		float:right;  
+		background: url("images/bkgd-left.jpg") 0 0 no-repeat;
+		padding-left:16px;
+		display: none;
+		@media (min-width: $size__screen-sm-min) {
+			display: block;
+		}
+		
+		&:hover { 
+			background-color: transparent;
+		}
+		ul li a {
+			display:block; 
+			float:left; 
+			height:23px; 
+			background: url("images/ufl-utility-buttons.png") no-repeat 0 0; 
+			text-indent:-9999px; 
+			margin:0; 
+			outline:none;
+			border:none; 
+			padding: 0;
+			
+			@for $i from 1 through length($inst-icons){
+				$inst-icon: nth($inst-icons,$i);
+				$inst-width: nth($inst-widths,$i);
+				&.#{$inst-icon} {
+					background-position: $inst-offset 0; width: $inst-width;
+				}
+				&.#{$inst-icon}:hover {
+					background-position: $inst-offset -23px;
+				}
+				$inst-offset: $inst-offset - $inst-width !global;
+			}
+		}
+	}
+}
+

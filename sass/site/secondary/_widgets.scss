@@ -1,6 +1,35 @@
 .widget {
-	margin: 0 0 1.5em;
-
+	margin: 15px 0 1.5em;
+	padding: 5px 10px 14px;
+	background-color: $color__menu-bg;
+	border-bottom: 2px solid $color__menu-border-bottom;
+	
+	&:first-child {
+		margin-top: 0;	
+	}
+	
+	.widget-title, .widgettitle {
+		margin: 0 -5px .5em;
+		padding: 6px 10px;
+		background-color: $color__background-page;
+		border-bottom: 1px solid $color__menu-border-bottom;
+	}
+	
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		
+		li {
+			background: transparent url("images/bg-sprite-transparent.png") -988px -137px no-repeat;
+			padding-left: $size__padding*1.5;
+			font-size: $font__widget-size;
+			margin-bottom: 12px;
+			line-height: 16px;
+			max-width: 300px;
+		}
+	}
+	
 	/* Make sure select elements fit in widgets */
 	select {
 		max-width: 100%;

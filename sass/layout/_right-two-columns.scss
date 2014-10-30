@@ -1,0 +1,10 @@
+body[class*="right-two-columns"] {
+	@media (min-width: $size__screen-sm-min){
+		#site-navigation {
+			display: none;	
+		}
+		#content {
+			padding-left: $size__grid-gutter-width/2;
+		}
+	}
+}

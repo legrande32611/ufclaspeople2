@@ -15,6 +15,17 @@ li > ol {
 	margin-bottom: 0;
 	margin-left: 1.5em;
 }
+article ul {
+	list-style: none;
+	margin-left: 0;
+	padding-left: 1.5em;
+	
+	li {
+		background: transparent url("images/bg-orange-bullet.png") 0 8px no-repeat;
+		padding-left: 12px;
+		margin-bottom: 0.5em;
+	}
+}
 
 dt {
 	font-weight: bold;

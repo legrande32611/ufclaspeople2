@@ -5,11 +5,20 @@
  * @package UF CLAS People 2
  */
 
+/*
+ * Loads the Options Panel
+ *
+ * If you're loading from a child theme use stylesheet_directory
+ * instead of template_directory
+ */
+define( 'OPTIONS_FRAMEWORK_DIRECTORY', get_template_directory_uri() . '/admin/' );
+require_once dirname( __FILE__ ) . '/admin/options-framework.php'; 
+
 /**
  * Set the content width based on the theme's design and stylesheet.
  */
 if ( ! isset( $content_width ) ) {
-	$content_width = 640; /* pixels */
+	$content_width = 690; /* pixels */
 }
 
 if ( ! function_exists( 'ufclaspeople2_setup' ) ) :
@@ -31,18 +40,20 @@ function ufclaspeople2_setup() {
 	load_theme_textdomain( 'ufclaspeople2', get_template_directory() . '/languages' );
 
 	// Add default posts and comments RSS feed links to head.
-	add_theme_support( 'automatic-feed-links' );
+	// add_theme_support( 'automatic-feed-links' );
 
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.
 	 *
 	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 	 */
-	//add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'post-thumbnails' );
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'primary' => __( 'Primary Menu', 'ufclaspeople2' ),
+		'main_menu' => __( 'Main Menu', 'ufclaspeople2' ),
+		/*'header_menu' => __( 'Header Menu', 'ufclaspeople2' ),*/
+		'footer_menu' => __( 'Footer Menu', 'ufclaspeople2' ),
 	) );
 
 	/*
@@ -66,6 +77,9 @@ function ufclaspeople2_setup() {
 		'default-color' => 'ffffff',
 		'default-image' => '',
 	) ) );
+	
+	// Add support for editor styles
+	add_editor_style( 'editor-style.css' );
 }
 endif; // ufclaspeople2_setup
 add_action( 'after_setup_theme', 'ufclaspeople2_setup' );
@@ -76,15 +90,65 @@ add_action( 'after_setup_theme', 'ufclaspeople2_setup' );
  * @link http://codex.wordpress.org/Function_Reference/register_sidebar
  */
 function ufclaspeople2_widgets_init() {
-	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'ufclaspeople2' ),
-		'id'            => 'sidebar-1',
-		'description'   => '',
+	register_sidebar (array(
+		'name' => 'Page Left Sidebar',
+		'id' => 'page_sidebar',
+		'description' => __('Widgets in this area will be shown in the left column of all pages', 'ufclaspeople2'),
+		'before_widget' => '<div class="widget">',
+		'after_widget' => '</div>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	)); 
+	
+	register_sidebar (array(
+		'name' => 'Page Right Sidebar',
+		'id' => 'page_right',
+		'description' => __('Widgets in this area will be shown in the right column of all pages in a third column', 'ufclaspeople2'),
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h1 class="widget-title">',
-		'after_title'   => '</h1>',
-	) );
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	)); 
+		
+	register_sidebar (array(
+		'name' => 'Post Sidebar',
+		'id' => 'post_sidebar',
+		'description' => __('Widgets in this area will be shown in the right column of every post in a third column.', 'ufclaspeople2'),
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	)); 
+
+	register_sidebar (array(
+		'name' => 'Home Left',
+		'id' => 'home_left',
+		'description' => __('Widgets in this area will be shown on the left side of your home page', 'ufclaspeople2'),
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	)); 
+		
+	register_sidebar (array(
+		'name' => 'Home Right',
+		'id' => 'home_right',
+		'description' => __('Widgets in this area will be shown on the right side of your home page', 'ufclaspeople2'),
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget' => '</aside>',
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+	)); 
+
+	/*register_sidebar (array(
+		'name' => 'Footer',
+		'id' => 'site_footer',
+		'description' => 'Widgets in this area will be shown in the FOOTER.',
+		'before_widget' => '<div class="widget footer_widget"><div class="box">',
+		'after_widget' => '</div></div>',
+		'before_title' => '<h3>',
+		'after_title' => '</h3>',
+	));*/
 }
 add_action( 'widgets_init', 'ufclaspeople2_widgets_init' );
 
@@ -92,22 +156,29 @@ add_action( 'widgets_init', 'ufclaspeople2_widgets_init' );
  * Enqueue scripts and styles.
  */
 function ufclaspeople2_scripts() {
+	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/inc/bootstrap/css/bootstrap.min.css', array(), '3.2.0', 'all' );
+	wp_enqueue_style( 'bootstrap-jasny', get_template_directory_uri() . '/inc/jasny-bootstrap/css/jasny-bootstrap.min.css', array(), '3.1.3', 'all' );
 	wp_enqueue_style( 'ufclaspeople2-style', get_stylesheet_uri() );
-
-	wp_enqueue_script( 'ufclaspeople2-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
-
+	
 	wp_enqueue_script( 'ufclaspeople2-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
-
+	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/inc/bootstrap/js/bootstrap.min.js', array('jquery'), '3.2.0', true );
+	wp_enqueue_script( 'bootstrap-jasny', get_template_directory_uri() . '/inc/jasny-bootstrap/js/jasny-bootstrap.min.js', array('jquery', 'bootstrap'), '3.1.3', true );
+	
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+	
+	if( of_get_option('opt_custom_css') ){
+		wp_add_inline_style( 'ufclaspeople2-style', esc_html(of_get_option('opt_custom_css')) );
+	}
+
 }
 add_action( 'wp_enqueue_scripts', 'ufclaspeople2_scripts' );
 
 /**
  * Implement the Custom Header feature.
  */
-//require get_template_directory() . '/inc/custom-header.php';
+require get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
@@ -128,3 +199,87 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+
+/**
+ * Last updated date for the site to display on the home page
+ */
+function ufl_site_last_updated($d = '') {
+	$recent = new WP_Query("showposts=1&orderby=modified&post_status=publish&post_type=any");
+	if ( $recent->have_posts() ) {
+		while ( $recent->have_posts() ) {
+			$recent->the_post();
+			$last_update = get_the_modified_date($d);
+		}
+		echo $last_update;
+	}
+}
+
+/**
+ * Custom Background 
+ * 
+ * Remove the custom background class if there is no background set, support background colors
+ */
+function ufclaspeople2_custom_background_class( $wp_classes ){
+	$background = get_background_image();
+	$color = get_background_color();
+	if ( $color === get_theme_support( 'custom-background', 'default-color' ) ) {
+		$color = false;
+	}
+	if( empty($background) ) {
+		if( ! $color ){
+			$bg_class = array( 'custom-background' );
+			$wp_classes = array_diff( $wp_classes, $bg_class );
+		}
+		else {
+			$wp_classes[] = 'custom-background-color';
+		}
+	}
+	return $wp_classes;
+}
+add_filter( 'body_class', 'ufclaspeople2_custom_background_class', 10, 2 );
+
+
+/**
+ * Custom Image Sizes
+ */
+add_image_size( 'page-thumbnail', 200 );
+add_image_size( 'page-md-thumbnail', 300 );
+add_image_size( 'page-header', 680, 240, array('left', 'top') );
+
+function ufclaspeople2_show_custom_sizes( $sizes ) {
+    return array_merge( $sizes, array(
+        'page-thumbnail' => __( 'Thumbnail (Uncropped)' ),
+		'page-md-thumbnail' => __( 'Medium (Uncropped)' ),
+		'page-header' => __( 'Page Header' ),
+    ) );
+}
+add_filter( 'image_size_names_choose', 'ufclaspeople2_show_custom_sizes' );
+
+
+/**
+ * Content Formatting
+ *
+ * Allow inserting advanced html using the [raw][/raw] shortcode
+ */
+function ufclas_formatter($content) {
+	$new_content = '';
+	$pattern_full = '{(\[raw\].*?\[/raw\])}is';
+	$pattern_contents = '{\[raw\](.*?)\[/raw\]}is';
+	$pieces = preg_split($pattern_full, $content, -1, PREG_SPLIT_DELIM_CAPTURE);
+
+	foreach ($pieces as $piece) {
+		if (preg_match($pattern_contents, $piece, $matches)) {
+			$new_content .= $matches[1];
+		} else {
+			$new_content .= wptexturize(wpautop($piece));
+		}
+	}
+
+	return $new_content;
+}
+	
+remove_filter('the_content', 'wpautop');
+remove_filter('the_content', 'wptexturize');
+add_filter('the_content', 'ufclas_formatter', 99);
+

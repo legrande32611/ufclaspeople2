@@ -1,2 +1,20 @@
 $size__site-main: 100%;
 $size__site-sidebar: 25%;
+$size__site-page: 960px;
+
+$size__grid-gutter-width: 30px;
+$size__padding: 12px;
+
+// Media query breakpoints, taken from Twitter Bootstrap
+$size__screen-xxs-min: 320px;
+$size__screen-xs-min: 480px;
+$size__screen-sm-min: 768px;
+$size__screen-md-min: 992px;
+$size__screen-lg-min: 1200px;
+
+// So media queries don't overlap when required, provide a maximum
+$size__screen-xxs-max: ($size__screen-xs-min - 1);
+$size__screen-xs-max: ($size__screen-sm-min - 1);
+$size__screen-sm-max: ($size__screen-md-min - 1);
+$size__screen-md-max: ($size__screen-lg-min - 1);
+

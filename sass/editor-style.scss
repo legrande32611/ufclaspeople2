@@ -1,0 +1,30 @@
+/* Editor Styles */
+
+
+@import "variables-site/variables-site";
+@import "mixins/mixins-master";
+@import "reset";
+@import "typography/typography";
+@import "elements/elements";
+@import "modules/accessibility";
+@import "modules/alignments";
+@import "modules/clearings";
+@import "media/media";
+
+body {
+	background-color: $page-bg-color;
+	max-width: $size__site-page;
+	margin: 15px;
+	font-size: 13px;
+}
+ul {
+	list-style: none;
+	margin-left: 0;
+	padding-left: 1.5em;
+	
+	li {
+		background: transparent url("images/bg-orange-bullet.png") 0 8px no-repeat;
+		padding-left: 12px;
+		margin-bottom: 0.5em;
+	}
+}

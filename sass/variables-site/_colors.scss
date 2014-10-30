@@ -1,4 +1,5 @@
 $color__background-body: #fff;
+$color__background-page: #fff;
 $color__background-screen: #f1f1f1;
 $color__background-hr: #ccc;
 $color__background-button: #e6e6e6;
@@ -8,13 +9,43 @@ $color__background-ins: #fff9c0;
 $color__text-screen: #21759b;
 $color__text-input: #666;
 $color__text-input-focus: #111;
-$color__link: royalblue;
-$color__link-visited: purple;
+$color__link: #243778;
+$color__link-visited: #203C67;
 $color__link-hover: midnightblue;
 $color__text-main: #404040;
+
+$color__heading-archive: #666;
+$color__blockquote-bg: #d7def0;
+$color__heading-archive-border: #6377b2;
 
 $color__border-button: #ccc #ccc #bbb;
 $color__border-button-hover: #ccc #bbb #aaa;
 $color__border-button-focus: #aaa #bbb #bbb;
 $color__border-input: #ccc;
 $color__border-abbr: #666;
+
+$color__header-bg: #1f3068;
+$color__header-text: #fff;
+
+$color__menu-text-current: $color__header-text;
+$color__menu-bg: #F2F2F2;
+$color__menu-bg-over: #D7DEF0;
+$color__menu-bg-current: $color__header-bg;
+$color__menu-bg-submenu: $color__background-body;
+$color__menu-border-top: #FCFCFC;
+$color__menu-border-bottom: #E0E0E0;
+
+
+$dark-blue: #1f3068;
+
+$light-blue: #D7DEF0;
+$medium-blue: #495aaa;
+
+$very-dark-blue: #061a67;
+$light-gray: #E3E3E3;
+$medium-gray: #BEBEBE;
+
+
+$header-orange: #d36528;
+
+$page-bg-color: $color__background-page;

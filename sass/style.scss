@@ -1,9 +1,9 @@
 /*
-Theme Name: UF CLAS People 2
+Theme Name: UF CLAS People 2 Beta
 Theme URI: http://it.clas.ufl.edu/
 Author: Priscilla Chapman (CLAS IT)
 Author URI: http://it.clas.ufl.edu/
-Description: Theme for UF CLAS personal pages. Based on the _s (Underscores) theme.
+Description: (Development Version) Theme for UF CLAS personal pages. Responsive version with mobile-friendly main navigation.
 Version: 1.0.0
 Text Domain: UF CLAS People 2
 
@@ -14,6 +14,10 @@ Eric Meyer http://meyerweb.com/eric/tools/css/reset/index.html
 along with Nicolas Gallagher and Jonathan Neal http://necolas.github.com/normalize.css/
 and Blueprint http://www.blueprintcss.org/
 */
+
+$inst-icons: directory, elearning, webmail, isis, myufl, maps;
+$inst-widths: 34px, 60px, 40px, 40px, 40px, 40px;
+$inst-offset: 0px;
 
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
@@ -33,10 +37,12 @@ and Blueprint http://www.blueprintcss.org/
 	10.1 Posts and pages
 	10.2 Asides
 	10.3 Comments
+	10.4 Structure
 11.0 Infinite scroll
 12.0 Media
 	12.1 Captions
 	12.2 Galleries
+	12.3 Slideshows
 --------------------------------------------------------------*/
 @import "variables-site/variables-site";
 @import "mixins/mixins-master";
@@ -65,6 +71,7 @@ and Blueprint http://www.blueprintcss.org/
 5.0 Navigation
 --------------------------------------------------------------*/
 @import "navigation/navigation";
+@import "navigation/inst-nav";
 
 /*--------------------------------------------------------------
 6.0 Accessibility
@@ -100,3 +107,4 @@ and Blueprint http://www.blueprintcss.org/
 12.0 Media
 --------------------------------------------------------------*/
 @import "media/media";
+

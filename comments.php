@@ -64,6 +64,6 @@ if ( post_password_required() ) {
 		<p class="no-comments"><?php _e( 'Comments are closed.', 'ufclaspeople2' ); ?></p>
 	<?php endif; ?>
 
-	<?php comment_form(); ?>
+	<?php //comment_form(); ?>
 
 </div><!-- #comments -->
