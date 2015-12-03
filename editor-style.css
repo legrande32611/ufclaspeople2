@@ -102,7 +102,7 @@ textarea {
   font-size: 1.3rem; }
 
 h1, h2, h3, h4 {
-  font-family: "ufshands", Arial, sans-serif;
+  font-family: ufshands, Arial, sans-serif;
   color: #243778;
   font-weight: normal; }
 
@@ -143,7 +143,13 @@ dfn, cite, em, i {
   font-style: italic; }
 
 blockquote {
-  margin: 0 1.5em; }
+  margin: 1.5em;
+  padding: 1em;
+  font-size: 1.4em;
+  font-style: italic;
+  border-left: 5px solid #6377b2;
+  color: #243778;
+  background: url("images/bg-sprite-transparent.png") no-repeat scroll -1240px -519px #d7def0; }
 
 address {
   margin: 0 0 1.5em; }
@@ -409,6 +415,53 @@ img.border {
 
 .gallery-caption {
   display: block; }
+
+/*--------------------------------------------------------------
+12.3 Slideshows
+--------------------------------------------------------------*/
+.slideshow_container .slideshow_container a {
+  text-decoration: none; }
+  .slideshow_container .slideshow_container a:hover {
+    text-decoration: none; }
+.slideshow_container .slideshow_slide {
+  margin-right: 2px; }
+.slideshow_container .slideshow_content .slideshow_slide_text {
+  padding: 20px 20px 20px 40px; }
+  @media (max-width: 479px) {
+    .slideshow_container .slideshow_content .slideshow_slide_text {
+      padding: 20px 10px 20px 20px; } }
+  .slideshow_container .slideshow_content .slideshow_slide_text div.slideshow_title,
+  .slideshow_container .slideshow_content .slideshow_slide_text .slideshow_title {
+    margin-top: 40px;
+    margin-bottom: 12px;
+    text-align: inherit;
+    font-size: 26px;
+    font-size: 2.6rem;
+    line-height: 1.1em; }
+  .slideshow_container .slideshow_content .slideshow_slide_text div.slideshow_description,
+  .slideshow_container .slideshow_content .slideshow_slide_text .slideshow_description {
+    text-align: inherit; }
+  .slideshow_container .slideshow_content .slideshow_slide_text div, .slideshow_container .slideshow_content .slideshow_slide_text p, .slideshow_container .slideshow_content .slideshow_slide_text h1, .slideshow_container .slideshow_content .slideshow_slide_text h2, .slideshow_container .slideshow_content .slideshow_slide_text h3, .slideshow_container .slideshow_content .slideshow_slide_text h4, .slideshow_container .slideshow_content .slideshow_slide_text h5, .slideshow_container .slideshow_content .slideshow_slide_text h6 {
+    font-family: ufshands, Arial, sans-serif;
+    text-align: left; }
+    @media (max-width: 479px) {
+      .slideshow_container .slideshow_content .slideshow_slide_text div, .slideshow_container .slideshow_content .slideshow_slide_text p, .slideshow_container .slideshow_content .slideshow_slide_text h1, .slideshow_container .slideshow_content .slideshow_slide_text h2, .slideshow_container .slideshow_content .slideshow_slide_text h3, .slideshow_container .slideshow_content .slideshow_slide_text h4, .slideshow_container .slideshow_content .slideshow_slide_text h5, .slideshow_container .slideshow_content .slideshow_slide_text h6 {
+        text-align: center; } }
+.slideshow_container .slideshow_description_box {
+  background: #000;
+  width: 100%; }
+  .slideshow_container .slideshow_description_box div, .slideshow_container .slideshow_description_box p, .slideshow_container .slideshow_description_box h1, .slideshow_container .slideshow_description_box h2, .slideshow_container .slideshow_description_box h3, .slideshow_container .slideshow_description_box h4, .slideshow_container .slideshow_description_box h5, .slideshow_container .slideshow_description_box h6 {
+    text-align: center;
+    color: #fff; }
+    .slideshow_container .slideshow_description_box div a, .slideshow_container .slideshow_description_box p a, .slideshow_container .slideshow_description_box h1 a, .slideshow_container .slideshow_description_box h2 a, .slideshow_container .slideshow_description_box h3 a, .slideshow_container .slideshow_description_box h4 a, .slideshow_container .slideshow_description_box h5 a, .slideshow_container .slideshow_description_box h6 a {
+      text-align: center;
+      color: #fff; }
+.slideshow_container .slideshow_transparent {
+  filter: alpha(opacity=50);
+  opacity: 0.5; }
+  .slideshow_container .slideshow_transparent:hover {
+    filter: alpha(opacity=80);
+    opacity: 0.8; }
 
 body {
   background-color: #fff;

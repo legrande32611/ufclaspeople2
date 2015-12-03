@@ -5,6 +5,7 @@ body[class*="right-two-columns"] {
 		}
 		#content {
 			padding-left: $size__grid-gutter-width/2;
+			padding-right: $size__grid-gutter-width/2;
 		}
 	}
 }

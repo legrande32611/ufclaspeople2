@@ -4,8 +4,9 @@ Theme URI: http://it.clas.ufl.edu/
 Author: Priscilla Chapman (CLAS IT)
 Author URI: http://it.clas.ufl.edu/
 Description: Theme for UF CLAS personal pages. Responsive version with mobile-friendly main navigation.
-Version: 2.0.0
-Text Domain: UF CLAS People 2
+Version: 1.0.1
+Build Date: 20151202
+Text Domain: ufclaspeople2
 
  UF CLAS People 2 is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, Inc.
 
@@ -794,7 +795,8 @@ a {
   body[class*="right-two-columns"] #site-navigation {
     display: none; }
   body[class*="right-two-columns"] #content {
-    padding-left: 15px; } }
+    padding-left: 15px;
+    padding-right: 15px; } }
 
 /*--------------------------------------------------------------
 10.1 Posts and pages
