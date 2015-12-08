@@ -3,7 +3,7 @@ h1, h2, h3, h4 {
 	color: $color__link;
 	font-weight: normal;
 }
-h4, h5, h6 {
+h5, h6 {
 	font-weight: bold;
 }
 .entry-title, .page-title,  h2 {
@@ -30,4 +30,8 @@ h4, h5, h6 {
 h3 {
 	@include font-size(1.8);
 	margin-bottom: 0.2em;
+}
+h4 {
+	margin: 20px 0 10px;
+	@include font-size(1.56);
 }
