@@ -6,3 +6,7 @@ table {
 th {
 	font-weight: bold;
 }
+
+tr:nth-child(2n) td, tr.even td {
+    background: #F2F6FC none repeat scroll 0% 0%;
+}

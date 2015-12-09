@@ -1,11 +1,11 @@
 <?php
 /**
-Template Name: Three Columns (Right and Left Sidebars)
+Template Name: Right and Left Sidebars
 */
 
 get_header(); ?>
 
-	<div id="primary" class="content-area col-sm-6">
+	<div id="primary" class="content-area <?php echo ufclaspeople2_get_content_class(); ?>">
 		<main id="main" class="site-main" role="main">
 
 			<?php while ( have_posts() ) : the_post(); ?>
@@ -16,5 +16,5 @@ get_header(); ?>
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
-<?php get_sidebar('page_right'); ?>
+<?php get_sidebar(); ?>
 <?php get_footer(); ?>

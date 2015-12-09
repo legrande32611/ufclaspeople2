@@ -1,16 +1,11 @@
 <?php
 /**
-Template Name: Two Columns (Right Sidebar, No Left Column)
+Template Name: Right Sidebar, No Left Navigation
 */
 
 get_header(); 
 ?> 	
-	<?php 
-		// Set width of primary area, full width when no page_right widgets present
-		$primary_width = ( is_active_sidebar( 'page_right' ) )? ' col-sm-9':' col-sm-12';
-	?>
- 
-	<div id="primary" class="content-area<?php echo $primary_width; ?>">
+	<div id="primary" class="content-area <?php echo ufclaspeople2_get_content_class(); ?>">
 		<main id="main" class="site-main" role="main">
 
 			<?php while ( have_posts() ) : the_post(); ?>
@@ -21,5 +16,5 @@ get_header();
 
 		</main><!-- #main -->
 	</div><!-- #primary -->
-<?php get_sidebar('page_right'); ?>
+<?php get_sidebar(); ?>
 <?php get_footer(); ?>

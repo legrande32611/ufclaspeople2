@@ -7,9 +7,7 @@
 
 get_header(); ?>
 
-<?php $content_width = ( is_active_sidebar( 'post_sidebar' ) )? "col-sm-6 col-md-6":"col-sm-8 col-md-9"; ?>
-
-	<div id="primary" class="content-area <?php echo $content_width; ?>">
+	<div id="primary" class="content-area <?php echo ufclaspeople2_get_content_class(); ?>">
 		<main id="main" class="site-main" role="main">
 
 		<?php while ( have_posts() ) : the_post(); ?>

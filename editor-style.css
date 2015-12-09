@@ -101,15 +101,12 @@ textarea {
   font-size: 13px;
   font-size: 1.3rem; }
 
-h1, h2, h3, h4 {
+h1, h2, h3, h4, h5, h6 {
   font-family: ufshands, Arial, sans-serif;
   color: #243778;
   font-weight: normal; }
 
-h5, h6 {
-  font-weight: bold; }
-
-.entry-title, .page-title, h2 {
+.entry-title, .page-title, h2, .entry-content h1 {
   font-size: 28px;
   font-size: 2.8rem;
   margin-bottom: 0.5em; }
@@ -137,6 +134,9 @@ h4 {
   margin: 20px 0 10px;
   font-size: 15.6px;
   font-size: 1.56rem; }
+
+h5, h6 {
+  margin: 10px 0 10px; }
 
 p {
   margin-bottom: 1.5em; }
@@ -203,6 +203,12 @@ small {
 big {
   font-size: 125%; }
 
+p.lead {
+  font-family: Georgia, serif;
+  font-size: 1.3em;
+  font-style: italic;
+  margin-bottom: 1.3em; }
+
 hr {
   background-color: #ccc;
   border: 0;
@@ -253,6 +259,9 @@ table {
 
 th {
   font-weight: bold; }
+
+tr:nth-child(2n) td, tr.even td {
+  background: #F2F6FC none repeat scroll 0% 0%; }
 
 .entry-content .tab_wrap {
   margin: 0 0 24px; }
@@ -372,15 +381,21 @@ img.border {
 --------------------------------------------------------------*/
 .wp-caption {
   margin-bottom: 1.5em;
-  max-width: 100%; }
+  max-width: 100%;
+  border: 1px solid #aaa;
+  border-bottom-width: 2px; }
   .wp-caption img[class*="wp-image-"] {
     display: block;
     margin: 0 auto; }
+  .wp-caption > a + br {
+    display: none; }
   .wp-caption .wp-caption-text {
     margin: 0.8075em 0; }
 
 .wp-caption-text {
-  text-align: center; }
+  text-align: center;
+  font-style: italic;
+  padding: 0 0.5em; }
 
 /*--------------------------------------------------------------
 12.2 Galleries

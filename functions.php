@@ -200,6 +200,10 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/jetpack.php';
 
+/**
+ * Load theme shortcodes.
+ */
+require get_template_directory() . '/inc/shortcodes.php';
 
 /**
  * Last updated date for the site to display on the home page
@@ -283,3 +287,29 @@ remove_filter('the_content', 'wpautop');
 remove_filter('the_content', 'wptexturize');
 add_filter('the_content', 'ufclas_formatter', 99);
 
+/**
+ * Primary content width classes for flexible layout
+ * 
+ * @return string Classes to add to the class attribute
+ * @since 1.0.2
+ */
+function ufclaspeople2_get_content_class(){
+	$classes = 'col-sm-8 col-md-9';
+	$is_home = (is_home() || is_front_page());
+	
+	if( is_page_template('page-templates/right-two-columns.php') ){
+		if( ($is_home && !is_active_sidebar('home_right')) || !is_active_sidebar('page_right') ){
+			$classes = 'col-sm-12 col-md-12';
+		}
+	}
+	elseif( is_singular('post') && is_active_sidebar('post_sidebar') ) {
+		$classes = 'col-sm-6 col-md-6';
+	}
+	elseif( $is_home && is_active_sidebar('home_right') ){
+		$classes = 'col-sm-6 col-md-6';
+	}
+	elseif( !$is_home && is_page() && is_active_sidebar('page_right') ){
+		$classes = 'col-sm-6 col-md-6';
+	}
+	return $classes;
+}
