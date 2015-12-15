@@ -294,22 +294,30 @@ add_filter('the_content', 'ufclas_formatter', 99);
  * @since 1.0.2
  */
 function ufclaspeople2_get_content_class(){
-	$classes = 'col-sm-8 col-md-9';
+	$classes_default = 'col-sm-8 col-md-9';
+	$classes_3col_width = 'col-sm-6 col-md-6';
+	$classes_full_width = 'col-sm-12 col-md-12';
 	$is_home = (is_home() || is_front_page());
 	
-	if( is_page_template('page-templates/right-two-columns.php') ){
+	if ( is_page_template('page-templates/full-width.php') ){
+		return $classes_full_width;
+	}
+	if ( is_page_template('page-templates/right-two-columns.php') ){
 		if( ($is_home && !is_active_sidebar('home_right')) || !is_active_sidebar('page_right') ){
-			$classes = 'col-sm-12 col-md-12';
+			return $classes_full_width;
+		}
+		else {
+			return $classes_default;			
 		}
 	}
-	elseif( is_singular('post') && is_active_sidebar('post_sidebar') ) {
-		$classes = 'col-sm-6 col-md-6';
+	if( is_singular('post') && is_active_sidebar('post_sidebar') ) {
+		return $classes_3col_width;
 	}
-	elseif( $is_home && is_active_sidebar('home_right') ){
-		$classes = 'col-sm-6 col-md-6';
+	if( $is_home && is_active_sidebar('home_right') ){
+		return $classes_3col_width;
 	}
-	elseif( !$is_home && is_page() && is_active_sidebar('page_right') ){
-		$classes = 'col-sm-6 col-md-6';
+	if( is_page() && !$is_home && is_active_sidebar('page_right') ){
+		return $classes_3col_width;
 	}
-	return $classes;
+	return $classes_default;
 }

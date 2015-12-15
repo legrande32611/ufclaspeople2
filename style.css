@@ -4,8 +4,8 @@ Theme URI: http://it.clas.ufl.edu/
 Author: Priscilla Chapman (CLAS IT)
 Author URI: http://it.clas.ufl.edu/
 Description: Theme for UF CLAS personal pages. Responsive version with mobile-friendly main navigation.
-Version: 1.0.2
-Build Date: 20151209
+Version: 1.0.3
+Build Date: 20151215
 Text Domain: ufclaspeople2
 
  UF CLAS People 2 is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, Inc.
@@ -187,6 +187,11 @@ h5, h6 {
 
 p {
   margin-bottom: 1.5em; }
+  p.lead {
+    font-family: Georgia, serif;
+    font-size: 1.3em;
+    font-style: italic;
+    margin-bottom: 1.3em; }
 
 b, strong {
   font-weight: bold; }
@@ -250,11 +255,11 @@ small {
 big {
   font-size: 125%; }
 
-p.lead {
-  font-family: Georgia, serif;
-  font-size: 1.3em;
-  font-style: italic;
-  margin-bottom: 1.3em; }
+.hyphenation, .widget_listcategorypostswidget li > a, .widget_listcategorypostswidget .recent-posts li .lcp_post, .widget_listcategorypostswidget .recent-posts li .lcp_excerpt {
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto; }
 
 /*--------------------------------------------------------------
 3.0 Elements
@@ -1088,9 +1093,7 @@ img.border {
 --------------------------------------------------------------*/
 .wp-caption {
   margin-bottom: 1.5em;
-  max-width: 100%;
-  border: 1px solid #aaa;
-  border-bottom-width: 2px; }
+  max-width: 100%; }
   .wp-caption img[class*="wp-image-"] {
     display: block;
     margin: 0 auto; }
@@ -1189,5 +1192,38 @@ img.border {
   .slideshow_container .slideshow_transparent:hover {
     filter: alpha(opacity=80);
     opacity: 0.8; }
+
+/*--------------------------------------------------------------
+13.0 Plugins
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+13.1 List Category Posts
+--------------------------------------------------------------*/
+.widget_listcategorypostswidget li > a {
+  font-family: ufshands, Arial, sans-serif;
+  display: block;
+  font-size: 15.6px;
+  font-size: 1.56rem;
+  margin: 0 0 4px; }
+.widget_listcategorypostswidget .recent-posts li {
+  background: transparent;
+  padding-left: 0;
+  max-width: inherit; }
+  .widget_listcategorypostswidget .recent-posts li .lcp_post {
+    font-size: 14.3px;
+    font-size: 1.43rem;
+    background-color: #6E85BF;
+    color: #fff;
+    padding: 8px 6px 8px 10px; }
+    .widget_listcategorypostswidget .recent-posts li .lcp_post strong {
+      font-weight: normal; }
+    .widget_listcategorypostswidget .recent-posts li .lcp_post a:link, .widget_listcategorypostswidget .recent-posts li .lcp_post a:visited {
+      color: #fff; }
+  .widget_listcategorypostswidget .recent-posts li .lcp_excerpt {
+    font-size: 12px;
+    font-size: 1.2rem;
+    padding: 0 0 0 4px;
+    color: #3E5393;
+    line-height: 1.5em; }
 
 /*# sourceMappingURL=style.css.map */

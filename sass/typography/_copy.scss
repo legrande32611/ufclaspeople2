@@ -1,5 +1,12 @@
 p {
 	margin-bottom: 1.5em;
+	
+	&.lead {
+		font-family: Georgia, serif;
+		font-size: 1.3em;
+		font-style: italic;
+		margin-bottom: 1.3em;
+	}
 }
 
 b, strong {
@@ -74,9 +81,10 @@ small {
 big {
 	font-size: 125%;
 }
-p.lead {
-	font-family: Georgia, serif;
-	font-size: 1.3em;
-	font-style: italic;
-	margin-bottom: 1.3em;
+
+.hyphenation {
+	word-break: break-word;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
 }

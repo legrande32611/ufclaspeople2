@@ -140,6 +140,11 @@ h5, h6 {
 
 p {
   margin-bottom: 1.5em; }
+  p.lead {
+    font-family: Georgia, serif;
+    font-size: 1.3em;
+    font-style: italic;
+    margin-bottom: 1.3em; }
 
 b, strong {
   font-weight: bold; }
@@ -203,11 +208,11 @@ small {
 big {
   font-size: 125%; }
 
-p.lead {
-  font-family: Georgia, serif;
-  font-size: 1.3em;
-  font-style: italic;
-  margin-bottom: 1.3em; }
+.hyphenation {
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto; }
 
 hr {
   background-color: #ccc;
@@ -381,9 +386,7 @@ img.border {
 --------------------------------------------------------------*/
 .wp-caption {
   margin-bottom: 1.5em;
-  max-width: 100%;
-  border: 1px solid #aaa;
-  border-bottom-width: 2px; }
+  max-width: 100%; }
   .wp-caption img[class*="wp-image-"] {
     display: block;
     margin: 0 auto; }
