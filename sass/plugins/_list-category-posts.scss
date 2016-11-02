@@ -2,41 +2,34 @@
 13.1 List Category Posts
 --------------------------------------------------------------*/
 .widget_listcategorypostswidget {
-	li {
-		& > a {
-			font-family: $font__headings;
-			display: block;
-			@include font-size(1.56);
-			@extend .hyphenation;
-			margin: 0 0 4px;
-		}
-	}
-	.recent-posts li {
-		background: transparent;
-		padding-left: 0;
-		max-width: inherit;
-	
-		.lcp_post {
-			@include font-size(1.43);
-			@extend .hyphenation;
-			background-color: #6E85BF;
-			color: #fff;
-			padding: 8px 6px 8px 10px;
+	.recent-posts { 
+		li {
+			background: transparent;
+			padding-left: 0;
+			max-width: inherit;
 			
-			strong {
-				font-weight: normal;	
+			.lcp_post {
+				@include font-size(1.43);
+				@extend .hyphenation;
+				background-color: #6E85BF;
+				color: #fff;
+				padding: 8px 6px 8px 10px;
+				
+				strong {
+					font-weight: normal;	
+				}
+				
+				a:link, a:visited {
+					color: #fff;	
+				}
 			}
-			
-			a:link, a:visited {
-				color: #fff;	
+			.lcp_excerpt {
+				@include font-size(1.2);
+				@extend .hyphenation;
+				padding: 0 0 0 4px;
+				color: #3E5393;
+				line-height: 1.5em;
 			}
-		}
-		.lcp_excerpt {
-			@include font-size(1.2);
-			@extend .hyphenation;
-			padding: 0 0 0 4px;
-			color: #3E5393;
-			line-height: 1.5em;
 		}
 	}
 }

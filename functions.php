@@ -139,16 +139,6 @@ function ufclaspeople2_widgets_init() {
 		'before_title' => '<h3 class="widget-title">',
 		'after_title' => '</h3>',
 	)); 
-
-	/*register_sidebar (array(
-		'name' => 'Footer',
-		'id' => 'site_footer',
-		'description' => 'Widgets in this area will be shown in the FOOTER.',
-		'before_widget' => '<div class="widget footer_widget"><div class="box">',
-		'after_widget' => '</div></div>',
-		'before_title' => '<h3>',
-		'after_title' => '</h3>',
-	));*/
 }
 add_action( 'widgets_init', 'ufclaspeople2_widgets_init' );
 
@@ -156,13 +146,17 @@ add_action( 'widgets_init', 'ufclaspeople2_widgets_init' );
  * Enqueue scripts and styles.
  */
 function ufclaspeople2_scripts() {
-	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/inc/bootstrap/css/bootstrap.min.css', array(), '3.2.0', 'all' );
-	wp_enqueue_style( 'bootstrap-jasny', get_template_directory_uri() . '/inc/jasny-bootstrap/css/jasny-bootstrap.min.css', array(), '3.1.3', 'all' );
-	wp_enqueue_style( 'ufclaspeople2-style', get_stylesheet_uri() );
+	// Get theme version number
+	$theme_data = wp_get_theme();
+	$theme_version = $theme_data->get('Version');
 	
-	wp_enqueue_script( 'ufclaspeople2-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
-	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/inc/bootstrap/js/bootstrap.min.js', array('jquery'), '3.2.0', true );
-	wp_enqueue_script( 'bootstrap-jasny', get_template_directory_uri() . '/inc/jasny-bootstrap/js/jasny-bootstrap.min.js', array('jquery', 'bootstrap'), '3.1.3', true );
+	wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/inc/bootstrap/css/bootstrap.min.css', array(), null, 'all' );
+	wp_enqueue_style( 'bootstrap-jasny', get_template_directory_uri() . '/inc/jasny-bootstrap/css/jasny-bootstrap.min.css', array(), null, 'all' );
+	wp_enqueue_style( 'ufclaspeople2-style', get_stylesheet_uri(), array(), $theme_version );
+	
+	wp_enqueue_script( 'ufclaspeople2-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), $theme_version, true );
+	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/inc/bootstrap/js/bootstrap.min.js', array('jquery'), null, true );
+	wp_enqueue_script( 'bootstrap-jasny', get_template_directory_uri() . '/inc/jasny-bootstrap/js/jasny-bootstrap.min.js', array('jquery', 'bootstrap'), null, true );
 	
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -285,7 +279,7 @@ function ufclas_formatter($content) {
 	
 remove_filter('the_content', 'wpautop');
 remove_filter('the_content', 'wptexturize');
-add_filter('the_content', 'ufclas_formatter', 99);
+add_filter('the_content', 'ufclas_formatter', 90);
 
 /**
  * Primary content width classes for flexible layout
