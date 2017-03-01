@@ -4,8 +4,8 @@ Theme URI: https://it.clas.ufl.edu/
 Author: Priscilla Chapman (CLAS IT)
 Author URI: https://it.clas.ufl.edu/
 Description: Theme for UF CLAS personal pages. Responsive version with mobile-friendly main navigation.
-Version: 1.0.6
-Build Date: 20161102
+Version: 1.0.7
+Build Date: 20170301
 Text Domain: ufclaspeople2
 
  UF CLAS People 2 is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, Inc.
@@ -255,7 +255,7 @@ small {
 big {
   font-size: 125%; }
 
-.hyphenation, .widget_listcategorypostswidget li > a, .widget_listcategorypostswidget .recent-posts li .lcp_post, .widget_listcategorypostswidget .recent-posts li .lcp_excerpt {
+.hyphenation, .widget_listcategorypostswidget .recent-posts li .lcp_post, .widget_listcategorypostswidget .recent-posts li .lcp_excerpt {
   word-break: break-word;
   -webkit-hyphens: auto;
   -moz-hyphens: auto;
@@ -871,7 +871,6 @@ body {
   background-repeat: repeat-x; }
 
 .container-wrap {
-  max-width: 960px + 10;
   overflow: visible;
   background: transparent url("images/bg-content-shadow.png") center top no-repeat;
   margin-left: auto;
@@ -1093,7 +1092,9 @@ img.border {
 --------------------------------------------------------------*/
 .wp-caption {
   margin-bottom: 1.5em;
-  max-width: 100%; }
+  max-width: 100%;
+  border: 1px solid #aaa;
+  border-bottom-width: 2px; }
   .wp-caption img[class*="wp-image-"] {
     display: block;
     margin: 0 auto; }
@@ -1199,12 +1200,6 @@ img.border {
 /*--------------------------------------------------------------
 13.1 List Category Posts
 --------------------------------------------------------------*/
-.widget_listcategorypostswidget li > a {
-  font-family: ufshands, Arial, sans-serif;
-  display: block;
-  font-size: 15.6px;
-  font-size: 1.56rem;
-  margin: 0 0 4px; }
 .widget_listcategorypostswidget .recent-posts li {
   background: transparent;
   padding-left: 0;

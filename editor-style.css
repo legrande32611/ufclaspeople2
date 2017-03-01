@@ -386,7 +386,9 @@ img.border {
 --------------------------------------------------------------*/
 .wp-caption {
   margin-bottom: 1.5em;
-  max-width: 100%; }
+  max-width: 100%;
+  border: 1px solid #aaa;
+  border-bottom-width: 2px; }
   .wp-caption img[class*="wp-image-"] {
     display: block;
     margin: 0 auto; }
